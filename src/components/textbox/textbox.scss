@@ -1,0 +1,19 @@
+@use '/src/assets/styles/colors.scss';
+
+.textbox {
+    box-sizing: border-box;
+    width: 12.5rem;
+    height: 3rem;
+    line-height: 2rem;
+    padding: 0.5rem;
+    border: 0.0625rem solid colors.$ink200;
+    border-radius: 0.5rem;
+    background-color: colors.$ink000;
+    font-size: 0.875rem;
+    color: colors.$gray200;
+    outline: none;
+
+    &::placeholder {
+        color: colors.$ink300;
+    }
+}
