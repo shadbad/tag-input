@@ -1,0 +1,31 @@
+@use '/src/assets/styles/colors.scss';
+
+.listbox {
+    width: calc(100% - 1rem);
+    box-sizing: border-box;
+    padding: 0.5rem;
+    background-color: colors.$ink000;
+    box-shadow: 0 0.5rem 1.5rem24px -0.25rem colors.$shadow;
+    display: flex;
+    flex-flow: column;
+    border-radius: 0.5rem;
+}
+
+.listbox__item {
+    height: 2rem;
+    line-height: 1rem;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    color: colors.$ink600;
+    border-radius: 0.25rem;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
+    &:hover {
+        background-color: rgba(colors.$ink100, 0.5);
+    }
+}
+
+.listbox__item--mark {
+    background-color: colors.$ink100;
+}
