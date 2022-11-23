@@ -1,0 +1,19 @@
+@use '/src/assets/styles/colors.scss';
+.chip {
+    border: none;
+    background-color: colors.$blue600;
+    color: colors.$blue100;
+    font-size: 0.75rem;
+    height: 1.25rem;
+    line-height: 1.25rem;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        background-color: colors.$pink100;
+        color: colors.$pink600;
+    }
+}
