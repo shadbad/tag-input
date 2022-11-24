@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Textbox, Listbox, Chip } from 'components';
+import { useOutsideClickDetector } from 'hooks';
 import useTagSuggestion from './useTagSuggestion';
 import useTags from './useTags';
+import './tagInput.scss';
 
 function TagInput({ className }: PropTypes) {
     const tags = useTags();
     const suggestions = useTagSuggestion();
     const [suggestionBoxExpanded, setSuggestionBoxExpanded] = useState(false);
     const [inputValue, setInputValue] = useState('');
+
+    useOutsideClickDetector('.tag-input', () => setSuggestionBoxExpanded(false));
 
     useEffect(() => {
         const input = inputValue
@@ -23,6 +27,19 @@ function TagInput({ className }: PropTypes) {
             setSuggestionBoxExpanded(false);
         }
     }, [inputValue, suggestions.list.length]);
+
+    const helpers = {
+        replaceLastTagInput(label: string) {
+            const inputArray = inputValue
+                .split(',')
+                .map((i) => i.trim())
+                .filter((i) => i.length > 0);
+
+            inputArray.pop();
+            inputArray.push(label);
+            setInputValue(inputArray.join(', '));
+        }
+    };
 
     const handle = {
         inputChange({ target }: React.ChangeEvent<HTMLInputElement>) {
@@ -48,7 +65,9 @@ function TagInput({ className }: PropTypes) {
 
                 case 'Enter': {
                     if (suggestions.list.length > 0) {
-                        tags.add(suggestions.getMarkedLabel());
+                        const label = suggestions.getMarkedLabel();
+                        tags.add(label);
+                        helpers.replaceLastTagInput(label);
                     } else if (suggestions.list.length === 0 && inputValue.length > 0) {
                         tags.add(inputValue);
                     }
@@ -59,9 +78,6 @@ function TagInput({ className }: PropTypes) {
                     break;
             }
         },
-        inputBlur() {
-            setSuggestionBoxExpanded(false);
-        },
         inputFocus() {
             if (suggestions.list.length > 0) setSuggestionBoxExpanded(true);
         },
@@ -70,6 +86,7 @@ function TagInput({ className }: PropTypes) {
         },
         suggestionClick(label: string) {
             tags.add(label);
+            helpers.replaceLastTagInput(label);
         }
     };
 
@@ -81,7 +98,6 @@ function TagInput({ className }: PropTypes) {
                 value={inputValue}
                 onChange={handle.inputChange}
                 onKeyUp={handle.inputKeyUp}
-                onBlur={handle.inputBlur}
                 onFocus={handle.inputFocus}
             />
 

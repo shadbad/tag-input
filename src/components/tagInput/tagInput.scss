@@ -1,0 +1,20 @@
+.tag-input {
+    position: relative;
+}
+
+.tag-input__textbox {
+    margin-bottom: 1rem;
+}
+
+.tag-input__suggestion-box {
+    position: absolute;
+    left: 0;
+    top: 3.5rem;
+    z-index: 2;
+}
+
+.tag-input__tag-list {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
