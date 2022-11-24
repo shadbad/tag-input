@@ -1,9 +1,11 @@
+import { TagInput } from 'components';
 import 'assets/styles/globals.scss';
+import './app.scss';
 
 function App() {
     return (
-        <div className="App">
-            <h1>Tag input</h1>
+        <div className="app">
+            <TagInput />
         </div>
     );
 }
