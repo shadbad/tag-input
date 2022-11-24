@@ -10,9 +10,9 @@ describe('<Textbox />', () => {
 
     it('binds change event handler', async () => {
         user.setup();
-        const onInput = jest.fn();
-        render(<Textbox label="sample" onInput={onInput} />);
+        const onChange = jest.fn();
+        render(<Textbox label="sample" onChange={onChange} />);
         await user.type(screen.getByPlaceholderText('sample'), 'test');
-        expect(onInput).toBeCalledTimes(4);
+        expect(onChange).toBeCalledTimes(4);
     });
 });

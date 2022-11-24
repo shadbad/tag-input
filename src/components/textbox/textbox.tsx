@@ -1,18 +1,37 @@
 import './textbox.scss';
 
-function Textbox({ className, label, onInput }: propTypes) {
-    return <input type="text" onInput={onInput} className={`${className} textbox`} placeholder={label} />;
+function Textbox({ className, label, value, onChange, onKeyUp, onBlur, onFocus }: PropTypes) {
+    return (
+        <input
+            type="text"
+            className={`${className} textbox`}
+            placeholder={label}
+            value={value}
+            onChange={onChange}
+            onKeyUp={onKeyUp}
+            onBlur={onBlur}
+            onFocus={onFocus}
+        />
+    );
 }
 
-type propTypes = {
+type PropTypes = {
     className?: string;
     label: string;
-    onInput?: React.FormEventHandler<HTMLInputElement> | undefined;
+    value?: string;
+    onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
+    onKeyUp?: React.KeyboardEventHandler<HTMLInputElement> | undefined;
+    onBlur?: React.FocusEventHandler<HTMLInputElement> | undefined;
+    onFocus?: React.FocusEventHandler<HTMLInputElement> | undefined;
 };
 
 Textbox.defaultProps = {
     className: '',
-    onInput: undefined
+    value: '',
+    onChange: undefined,
+    onKeyUp: undefined,
+    onBlur: undefined,
+    onFocus: undefined
 };
 
 export { Textbox };
