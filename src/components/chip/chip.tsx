@@ -1,7 +1,7 @@
 import React from 'react';
 import './chip.scss';
 
-function ChipComponent({ className, title, onClick }: propTypes) {
+function ChipComponent({ className, title, onClick }: PropTypes) {
     return (
         <button type="button" className={`${className} chip`} onClick={onClick}>
             {title}
@@ -9,7 +9,7 @@ function ChipComponent({ className, title, onClick }: propTypes) {
     );
 }
 
-type propTypes = {
+type PropTypes = {
     className?: string;
     title: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
