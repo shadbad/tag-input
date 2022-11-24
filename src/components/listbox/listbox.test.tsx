@@ -21,7 +21,8 @@ describe('<Listbox/>', () => {
     ];
 
     it('renders the list of items', () => {
-        render(<Listbox items={items} />);
+        const onClick = jest.fn();
+        render(<Listbox items={items} onClick={onClick} />);
         expect(screen.getByRole('list')).toBeInTheDocument();
         expect(screen.getAllByRole('listitem').map((item) => item.textContent)).toEqual(
             items.map((item) => item.label)
@@ -29,7 +30,8 @@ describe('<Listbox/>', () => {
     });
 
     it('marks the first list item', () => {
-        render(<Listbox items={items} />);
+        const onClick = jest.fn();
+        render(<Listbox items={items} onClick={onClick} />);
         expect(screen.getAllByRole('listitem')[0]).toHaveClass('listbox__item--mark');
     });
 });
