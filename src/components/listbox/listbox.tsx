@@ -1,28 +1,34 @@
 import './listbox.scss';
 
-function Listbox({ className, expand, items, currentIndex }: propTypes) {
+function Listbox({ className, expand, items, onClick }: PropTypes) {
     return (
-        <ul className={`${className} ${expand ? 'listbox--expand' : ''} listbox`}>
-            {items.map((item, index) => (
-                <li className={`listbox__item ${index === currentIndex ? 'listbox__item--mark' : ''}`} key={item.id}>
-                    {item.label}
+        <ul className={`${className} ${expand ? 'listbox--expanded' : ''} listbox`}>
+            {items.map((item) => (
+                <li className={`listbox__item ${item.isSelected ? 'listbox__item--mark' : ''}`} key={item.id}>
+                    <button
+                        className="listbox__item__button"
+                        type="button"
+                        onClick={() => onClick && onClick(item.label)}
+                    >
+                        {item.label}
+                    </button>
                 </li>
             ))}
         </ul>
     );
 }
 
-type propTypes = {
+type PropTypes = {
     className?: string;
     expand?: boolean;
-    items: { label: string; id: string }[];
-    currentIndex?: number;
+    items: { label: string; id: string; isSelected: boolean }[];
+    onClick?: (label: string) => void | undefined;
 };
 
 Listbox.defaultProps = {
     className: '',
     expand: true,
-    currentIndex: 0
+    onClick: undefined
 };
 
 export { Listbox };
